@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  filedrop:
+    container_name: "dja-filedrop"
+    image: "registry.davidjalbers.de/davidjalbers/filedrop:0.1"
+    networks: 
+      - "bluesnow.int"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=bluesnow.int"
+      - "traefik.http.routers.filedrop.rule=Host(`get.davidjalbers.de`)"
+
+networks: 
+  bluesnow.int:
+    name: "bluesnow.int"
+    external: true
+  
