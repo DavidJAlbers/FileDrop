@@ -1,0 +1,12 @@
+# Modules are installed during image build, see Dockerfile
+node_modules/
+
+# Docker files
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Image build script
+build.sh
+
+.gitignore

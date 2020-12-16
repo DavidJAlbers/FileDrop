@@ -1,0 +1,20 @@
+{
+  "name": "@davidjalbers/filedrop",
+  "author": "David J. Albers",
+  "description": "A web application for sharing and downloading files",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "nodemonConfig": {
+    "ext": "js,ejs,json"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "prod": "node"
+  }
+}
