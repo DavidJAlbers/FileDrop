@@ -1,0 +1,32 @@
+<%- include('_header'); -%>
+    <h4 class="fw-bold">
+        <% if (files.length > 1) { %>
+            DATEIEN
+        <% } else { %>
+            DATEI
+        <% } %>
+    </h4>
+    <h1><%= title %></h1>
+    <div class="row mt-3">
+        <% meta.forEach(function(info) { %>
+            <p class="col text-secondary text-nowrap"><%= info %></p>
+        <% }); %>
+    </div>
+    <div class="row row-no-gutters">
+        <% files.forEach(function(file) { %>
+            <div class="col col-lg-4">
+                <a class="btn btn-primary w-100 my-2" href="/data/<%= file.path %>" download>
+                    <div class="row align-items-center flex-nowrap">
+                        <div class="col-3">
+                            <img class="img-fluid p-3" src="/static/downloads.svg">
+                        </div>
+                        <div class="col-9 text-start text-nowrap">
+                            <h4 class="fw-bold"><%= file.name %></h4>
+                            <h5>(<%= file.type %>)</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% }); %>
+    </div>
+<%- include('_footer'); -%>
