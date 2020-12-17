@@ -9,8 +9,8 @@ COPY package*.json ./
 RUN npm install --only=production
 
 # Copy application code
-COPY ../src ./src
+COPY . .
 
 # Start application in production mode
-CMD [ "npm", "run", "prod" ]
+CMD [ "npm", "start" ]
 EXPOSE 80

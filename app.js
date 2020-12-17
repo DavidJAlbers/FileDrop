@@ -1,42 +1,21 @@
 const express = require('express')
 const app = express()
 
+const filedrops = require('./routes/filedrop-router')
+const options = require('./options')
+const version = require('./version')
+
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    res.render('index', {
-        title: "Startseite",
-        pageBranding: "FileDrop by David J. Albers"
-    })
+    res.render('index', {title: 'Startseite', pageBranding: options.branding, version: version})
 })
 
-app.get('/test', (req, res) => {
-    res.render('collection', {
-        title: "Testsammlung",
-        meta: [
-            "Referat",
-            "<Kurs>",
-            "<Schule>",
-            "David Albers"
-        ],
-        files: [
-            {
-                name: "Vortragsfolien",
-                path: "/path/to/file.pdf"
-            },
-            {
-                name: "Handout",
-                path: "/path/to/file.pdf"
-            },
-            {
-                name: "Quellennachweise",
-                path: "/path/to/file.pdf"
-            }
-        ],
-        pageBranding: "FileDrop by David J. Albers"
-    })
-})
+app.use('/static', express.static('static'))
+app.use('/data', express.static('data'))
+app.use('/', filedrops)
 
-app.listen(80, () => {
-    console.log('Listening on http://locahost:80')
+const port = 3000
+app.listen(port, () => {
+    console.log(`Listening on http://localhost:${port}`)
 })
