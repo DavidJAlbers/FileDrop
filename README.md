@@ -109,4 +109,5 @@ The `branding` will be shown in the web site's title, just after the file drop's
 - authentication features to secure access to certain file drops 
 - "single" file drops that link directly to one single file without a fancy UI
 - URL shortening
+- CLI for easily adding new filedrops
 
