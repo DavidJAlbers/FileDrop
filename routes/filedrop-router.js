@@ -15,11 +15,14 @@ var router = express.Router()
 router.get('/:filedrop', (req, res) => {
     for (filedrop of filedrops) {
         if (filedrop.name === req.params.filedrop) {
-            if (filedrop.type === 'file') {
-                res.render('collection', {...filedrop, pageBranding: options.branding, version: version})
-                return
-            } else if (filedrop.type === 'url') {
+            if (filedrop.type === 'direct_url'){
                 res.redirect(filedrop.url);
+                return
+            } else if (filedrop.type === 'urls') {
+                res.render('redirect_page', {...filedrop, pageBranding: options, version: version})
+                return
+            } else if (filedrop.type === 'files') {
+                res.render('collection', {...filedrop, pageBranding: options.branding, version: version})
                 return
             }
         }

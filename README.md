@@ -1,9 +1,9 @@
 # FileDrop
-*FileDrop is a web service for sharing and downloading files.*
+*FileDrop is a web service for sharing and downloading files and a simple to use URL shortener.*
 
 It is written in Node.js with Express and EJS and uses lightweight JSON files for configuration.
 
-With FileDrop, you can provide your users with so-called "file drops", collections of files that are reachable from a convenient URI and can be downloaded via a minimalistic and customisable website. 
+With FileDrop, you can provide your users with so-called "file drops", collections of files, URLs or direct URL redirection that are reachable from a convenient URI and can be accessed via a minimalistic and customisable website. 
 
 ## Build & Deploy
 The recommended deployment strategy is to **use Docker**.
@@ -40,17 +40,28 @@ volumes:
 
 ### `filedrops.json`
 
-In this file, you list all your file drops as a JSON array. Every file drop has to provide the fields 
-- `name` (will be used for the file drops URI, has to be unique), 
-- `title` (a more descriptive name for your file drop that will be shown on the site),
-- `meta` (additional information about the file drop as string array, may be empty), and
-- `files` (an array with the files to provide under this file drop, each with `name`, `type`, and `path`).
+In this file, you list all your file drops or URLs as a JSON array. Every element has to provide a `type` field and the following type specific fields:
+
+#### Direct URL redirection
+
+- `type` (has to be *direct_url*),
+- `name` (will be used for the URI, has to be unique),
+- `url` (the URL the user will be directed to).
+
+#### URLs with redirection page and Files
+
+- `type` (has to be *urls* or *files*)
+- `name` (will be used for the file drops or URL lists URI, has to be unique), 
+- `title` (a more descriptive name for your file drop or URL list that will be shown on the site),
+- `meta` (additional information about the file drop or URL list as string array, may be empty), and
+- `files` or `urls` (depends on the `type`, an array with the files or URLs to provide under this file drop or URL list, each with `name`, `type`, and `path` for files and `name` and `url` for URLs).
 
 Example `filedrops.json`:
 
 ```json
 [
   {
+    "type": "files",
     "name": "demo",
     "title": "A demo file drop",
     "meta": [],
@@ -68,6 +79,7 @@ Example `filedrops.json`:
     ]
   },
   {
+    "type": "files",
     "name": "raytracing",
     "title": "Presentation resources: \"The Raytracing algorithm\"",
     "meta": [
@@ -81,6 +93,26 @@ Example `filedrops.json`:
         "name": "Presentation slides",
         "type": "Keynote presentation",
         "path": "your/path/relative/to/app/data"
+      }
+    ]
+  },
+  {
+    "type": "direct_url",
+    "url": "https://youtube.com"
+  },
+  {
+    "type": "urls",
+    "name": "repositories",
+    "title": "All Project Repositories",
+    "meta": [],
+    "urls": [
+      {
+        "name": "GitHub",
+        "url": "https://github.com/your/repository"
+      },
+      {
+        "name": "GitLab",
+        "url": "https://gitlab.com/your/repository"
       }
     ]
   }
@@ -101,12 +133,11 @@ Currently, only one option is supported, so an example `options.json` may look l
   "branding": "Mr. Robert's FileDrop"
 }
 ```
-      
+
 The `branding` will be shown in the web site's title, just after the file drop's title.
 
 ## Roadmap
 
 - authentication features to secure access to certain file drops 
 - "single" file drops that link directly to one single file without a fancy UI
-- URL shortening
 
