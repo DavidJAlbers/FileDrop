@@ -6,7 +6,11 @@ docker-compose.yml
 Dockerfile
 .dockerignore
 
-# Image build script
-build.sh
-
+# Git files
 .gitignore
+.git/
+
+# Additional files
+LICENSE
+README.md
+
