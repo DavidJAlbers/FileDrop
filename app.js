@@ -8,7 +8,7 @@ const version = require('./version')
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Startseite', pageBranding: options.branding, version: version})
+    res.render('index', {title: 'Startseite', ...options.config, version: version})
 })
 
 app.use('/static', express.static('static'))
