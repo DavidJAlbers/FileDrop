@@ -1,39 +1,24 @@
 <%- include('_header'); -%>
-    <h4 class="fw-bold">Collection</h4>
+    <h4 class="fw-bold">SAMMLUNG</h4>
     <h1><%= title %></h1>
     <div class="row mt-3">
-        <% meta.forEach(function(info) { %>
-            <p class="col text-secondary text-nowrap"><%= info %></p>
-        <% }); %>
+        <% if (locals.meta) { %>
+            <% meta.forEach(function(info) { %>
+                <p class="col text-secondary text-nowrap"><%= info %></p>
+            <% }); %>
+        <% } %>
     </div>
-    <div class="row row-no-gutters">
-        <% elements.forEach(function(element) { %>
-            <div class="col col-lg-4">
-                <% if (element.type == "url") { %>
-                    <a class="btn btn-primary w-100 my-2" href="<%= element.url %>" role="button">
-                        <div class="row align-items-center flex-nowrap">
-                            <div class="col-3">
-                                <img class="img-fluid p-3" src="/static/downloads.svg">
-                            </div>
-                            <div class="col-9 text-start text-nowrap">
-                                <h4 class="fw-bold"><%= element.name %></h4>
-                            </div>
-                        </div>
-                    </a>
+    <% if (locals.elements) { %>
+        <div class="row row-no-gutters">
+            <% elements.forEach(function(element) { %>
+                <% if ('url' in element) { %>
+                    <%- include('_element', {path: element.url, type: 'Link', image: 'redirect', title: element.title}) -%>
                 <% } else { %>
-                    <a class="btn btn-primary w-100 my-2" href="/data/<%= element.path %>" download>
-                        <div class="row align-items-center flex-nowrap">
-                            <div class="col-3">
-                                <img class="img-fluid p-3" src="/static/downloads.svg">
-                            </div>
-                            <div class="col-9 text-start text-nowrap">
-                                <h4 class="fw-bold"><%= element.name %></h4>
-                                <h5>(<%= element.file_type %>)</h5>
-                            </div>
-                        </div>
-                    </a>
+                    <%- include('_element', {path: `/data/${element.path}`, type: element.type, image: 'download', download: true, title: element.title}) -%>
                 <% } %>
-            </div>
-        <% }); %>
-    </div>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <p class="mt-5 text-secondary">Diese Sammlung ist leer.</p>
+    <% } %>
 <%- include('_footer'); -%>

@@ -1,0 +1,17 @@
+<div class="col col-lg-4">
+    <a class="btn btn-primary w-100 my-2" href="<%= path %>" role="button"
+        <% if (locals.download && download == true) { %>
+            download
+        <% } %>
+        >
+        <div class="row align-items-center flex-nowrap">
+            <div class="col-3">
+                <img class="img-fluid p-3" src="/static/<%= image %>.svg">
+            </div>
+            <div class="col-9 text-start text-nowrap">
+                <h4 class="my-1 fw-bold"><%= title %></h4>
+                <h4 class="my-1"><%= type %></h4>
+            </div>
+        </div>
+    </a>
+</div>
