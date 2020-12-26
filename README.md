@@ -137,4 +137,4 @@ The `maintainer` address will be given to the user in case an error occurs when 
 - authentication features to secure access to certain file drops 
 - "single" file drops that link directly to one single file without a fancy UI
 - localisation options
-
+- CLI for easily adding new filedrops
