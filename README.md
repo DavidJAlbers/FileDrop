@@ -44,42 +44,42 @@ In this file, you list all your file drops or URLs as a JSON array. Every elemen
 
 #### Direct URL redirection
 
-- `type` (has to be *direct_url*),
+- `type` (has to be *url*),
 - `name` (will be used for the URI, has to be unique),
 - `url` (the URL the user will be directed to).
 
-#### URLs with redirection page and Files
+#### Collection
 
-- `type` (has to be *urls* or *files*)
-- `name` (will be used for the file drops or URL lists URI, has to be unique), 
-- `title` (a more descriptive name for your file drop or URL list that will be shown on the site),
-- `meta` (additional information about the file drop or URL list as string array, may be empty), and
-- `files` or `urls` (depends on the `type`, an array with the files or URLs to provide under this file drop or URL list, each with `name`, `type`, and `path` for files and `name` and `url` for URLs).
+- `type` (has to be *collection*)
+- `name` (will be used for the collections URI, has to be unique), 
+- `title` (a more descriptive name for your collection that will be shown on the site),
+- `meta` (additional information about the collection as string array, may be empty), and
+- `elements` (an array with the files or URLs to provide under this collection, each with `name`, `type` (*url* or *file*), `path` and `file_type` for files and `url` for URLs).
 
 Example `filedrops.json`:
 
 ```json
 [
   {
-    "type": "files",
+    "type": "collection",
     "name": "demo",
     "title": "A demo file drop",
     "meta": [],
-    "files": [
+    "elements": [
       {
         "name": "Test document for testing purposes",
-        "type": "text file",
+        "type": "file",
         "path": "your/path/relative/to/app/data"
       },
       {
         "name": "Audio demo file",
-        "type": "MP3 file",
+        "type": "file",
         "path": "your/path/relative/to/app/data"
       }
     ]
   },
   {
-    "type": "files",
+    "type": "collection",
     "name": "raytracing",
     "title": "Presentation resources: \"The Raytracing algorithm\"",
     "meta": [
@@ -88,30 +88,33 @@ Example `filedrops.json`:
       "Place of presentation",
       "University of XXX"
     ],
-    "files": [
+    "elements": [
       {
         "name": "Presentation slides",
-        "type": "Keynote presentation",
+        "type": "file",
         "path": "your/path/relative/to/app/data"
       }
     ]
   },
   {
-    "type": "direct_url",
+    "type": "url",
+    "name": "youtube",
     "url": "https://youtube.com"
   },
   {
-    "type": "urls",
+    "type": "collection",
     "name": "repositories",
     "title": "All Project Repositories",
     "meta": [],
-    "urls": [
+    "elements": [
       {
         "name": "GitHub",
+        "type": "url",
         "url": "https://github.com/your/repository"
       },
       {
         "name": "GitLab",
+        "type": "url",
         "url": "https://gitlab.com/your/repository"
       }
     ]
