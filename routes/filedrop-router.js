@@ -18,6 +18,9 @@ router.get('/:filedrop', (req, res) => {
             if ('url' in filedrop){
                 res.redirect(filedrop.url);
                 return
+            } else if ('date' in filedrop) {
+                res.render('countdown', {...filedrop, ...opt.config, version: version})
+                return
             } else if ('title' in filedrop) {
                 res.render('collection', {...filedrop, ...opt.config, version: version})
                 return

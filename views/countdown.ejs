@@ -1,0 +1,31 @@
+<%- include('_header'); -%>
+    <h4 class="fw-bold">COUNTDOWN</h4>
+    <h1><%= title %></h1>
+    <div class="row mt-3">
+        <% if (locals.meta) { %>
+            <% meta.forEach(function(info) { %>
+                <p class="col text-secondary text-nowrap"><%= info %></p>
+            <% }); %>
+        <% } %>
+    </div>
+    
+    <div class="jumbotron jumbotron-fluid">
+        <div class="center">
+            <h1 class="display-4" id=demo></h1>
+        </div>
+    </div>
+    
+    <script>
+        var countDownDate = new Date("Jan 21, 2021 20:13:00").getTime();
+        
+        var x = setInterval(function() {
+        
+          var now = new Date().getTime();
+          var distance = countDownDate - now;
+          var seconds = Math.floor(distance / 1000 * -1);
+        
+          document.getElementById("demo").innerHTML = "t = " + seconds + "s";
+        }, 1000);
+    </script>
+
+<%- include('_footer'); -%>
