@@ -50,7 +50,7 @@ In this file, you list all your desired collections as a JSON array. Each entry 
 
 When listing files in `elements`, an additional `type` field may be specified to indicate the human-readable type of file that is provided (e.g. "PDF document").
 
-An entry in `filedrops.json` with only a `name` and a `url` field (that is, without `title`, `meta`, or `elements`) is regarded as an instant redirection for convenient URL shortening.
+An entry in `filedrops.json` with only a `name` and a `url` field (that is, without `title`, `meta`, or `elements`) is regarded as an instant redirection for convenient URL shortening. Furthermore, an entry with a `date` field (`name` and `title` are also required) creates a timer page. 
 
 Example `filedrops.json`:
 
@@ -95,6 +95,11 @@ Example `filedrops.json`:
   {
     "name": "yt",
     "url": "https://youtube.com/mrrobert"
+  },
+  {
+    "name": "countdown",
+    "title": "Timer",
+    "date": "2021-01-24 14:12:00"
   },
   {
     "name": "repos",
