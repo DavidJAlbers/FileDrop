@@ -6,7 +6,4 @@ docker-compose.yml
 Dockerfile
 .dockerignore
 
-# Image build script
-build.sh
-
 .gitignore
