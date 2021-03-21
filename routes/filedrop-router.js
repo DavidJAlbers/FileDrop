@@ -18,8 +18,11 @@ router.get('/:filedrop', (req, res) => {
             if ('url' in filedrop){
                 res.redirect(filedrop.url);
                 return
+            } else if ('date' in filedrop) {
+                res.render('countdown', {...filedrop, ...opt.config, version})
+                return
             } else if ('title' in filedrop) {
-                res.render('collection', {...filedrop, ...opt.config, version: version})
+                res.render('collection', {...filedrop, ...opt.config, version})
                 return
             } else {
                 res.status(500).send(`Die angeforderte Ressource ist falsch spezifiziert. Bitte wenden Sie sich an ${opt.getMaintainerOrDefault()}.`)
