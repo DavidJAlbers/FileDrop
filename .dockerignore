@@ -6,4 +6,10 @@ docker-compose.yml
 Dockerfile
 .dockerignore
 
+# Git files
 .gitignore
+.git/
+
+# Additional files
+LICENSE
+README.md
